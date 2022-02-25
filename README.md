@@ -8,7 +8,7 @@ I am beginner to the python language and I want to learn its utility for the pur
 I retrieved this dataset from kaggle.com they site where I started learn about Machine learning. It is a great resource if you are just starting out like myself. 
 https://www.kaggle.com/thomasnibb/amsterdam-house-price-prediction
 
-## Base Model (see:base model.ipynb) 
+## Base Model (see:base model.py) 
 This is the very first ML model I was able to run. It is very simple model that uses the columns: Area (size of housing units), Room (number of rooms in unit), Lon and Lat (Longitude and Latitude, you can think of this as location). Having only 3 features also limits the predictive power of this model but the goal wasn't to make an imbecable model just yet. 
 
 ### Problems with this model
