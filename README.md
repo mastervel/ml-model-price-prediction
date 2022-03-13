@@ -20,3 +20,10 @@ However, the way this error is calculated is somewhat impractical. We want to te
 A lot has changed since "base model .py", there are now 2 new ML models using RandomForestRegressor and XGBRegressor. Both of which are an improvement over the base model which uses the DecisionTreeRegressor. Notice how the mean absolute error here is much larger then the one seen in base model .ipynb. The reason for this large difference is because of the addition of the line: "X_train, X_valid, y_train, y_valid = train_test_split(X, y, random_state=1)" which divides the dataset into a testing group (X_train and y_train) and a validation group (X_valid and y_valid). This addresses the problem stated earlier. Larger on I will be incorporating cross validation as anothe measure of evaluating the performance of the models. Given that the dataset is rather small, cross validation will limit the variation in our error calculation due to the random sampling of train_test_split. If you removed the random state variable and ran this file multiple time you will see how much the mean absolute error numbers vary. 
 
 For the next step, I will be considering how we can handle missing values in the dataset, so far I have simply been dropping rows with missing data. Since our current dataset only drops 4 rows using another method like imputing wouldn't yield much of an improvement. So I will be using a different dataset with more columns and missing values. 
+
+## XGBoost ML Model for Competition Submission
+##### (Refer to XGboost_ML_model.py)
+Currently this was used to create my first submission for this competition: https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview.
+Majority of the code used can be referenced from: https://www.kaggle.com/ryanholbrook/feature-engineering-for-house-prices/notebook
+
+I have only included simple feature engineering techniques, i.e. mathematical transformations and group transformations. I will be looking to incorporate other methods like Principal Component Analysis and such. 
