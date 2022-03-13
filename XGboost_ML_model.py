@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 import os
 import warnings
 from pathlib import Path
@@ -24,12 +21,10 @@ import optuna
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
-
-
 def load_data():
     # Read data
-    data_dir = Path("/Users/veliristimaki/Code/ML model for housing price/house-prices-advanced-regression-techniques")
+    # data from https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data
+    data_dir = Path("")
     df_train = pd.read_csv(data_dir / "train.csv", index_col="Id")
     df_test = pd.read_csv(data_dir / "test.csv", index_col="Id")
     # Merge the splits so we can process them together
@@ -119,10 +114,6 @@ def impute(df):
         df[name] = df[name].fillna("None")
     return df
 
-
-# In[3]:
-
-
 def score_dataset(X, y, model=XGBRegressor()):
     for colname in X.select_dtypes(["category"]):
         X[colname] = X[colname].cat.codes
@@ -174,10 +165,6 @@ def group_transforms(df):
     X['MedLotArea'] = df.groupby('Neighborhood')['LotArea'].transform('median')
     return X
 
-
-# In[ ]:
-
-
 def create_features(df, df_test=None):
     X = df.copy()
     y = X.pop("SalePrice")
@@ -189,11 +176,8 @@ def create_features(df, df_test=None):
         X = pd.concat([X, X_test])
 
     X = drop_uninformative(X, mi_scores)
-
     X = X.join(mathematical_transforms(X))
-
     X = label_encode(X)
-
     X = X.join(group_transforms(X))
 
     # Reform splits
@@ -213,10 +197,6 @@ y_train = df_train.loc[:, "SalePrice"]
 
 score_dataset(X_train, y_train)
 
-
-# In[ ]:
-
-
 def objective(trial):
     xgb_params = dict(
         max_depth=trial.suggest_int("max_depth", 2, 10),
@@ -234,10 +214,6 @@ def objective(trial):
 study = optuna.create_study(direction="minimize")
 study.optimize(objective, n_trials=20)
 xgb_params = study.best_params
-
-
-# In[ ]:
-
 
 X_train, X_test = create_features(df_train, df_test)
 y_train = df_train.loc[:, "SalePrice"]
