@@ -24,6 +24,7 @@ For the next step, I will be considering how we can handle missing values in the
 ## XGBoost ML Model for Competition Submission
 ##### (Refer to XGboost_ML_model.py)
 Currently this was used to create my first submission for this competition: https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview.
+
 Majority of the code used can be referenced from: https://www.kaggle.com/ryanholbrook/feature-engineering-for-house-prices/notebook
 
 I have only included simple feature engineering techniques, i.e. mathematical transformations and group transformations. I will be looking to incorporate other methods like Principal Component Analysis and such. 
